@@ -46,7 +46,7 @@ class Study():
         if response.ok:
             try:
                 response_json = response.json()
-                print(response_json)
+                print('New trial values: {response_json}')
 
                 trial_key = response_json['trial_key']
                 values = response_json['values']
