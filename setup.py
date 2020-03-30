@@ -6,7 +6,7 @@ with open("README.rst", "r") as fh:
 setup(
      name = 'hyperkite',  
      packages = ['hyperkite'],
-     version = '0.1',
+     version = '0.1.1',
      description = "Hyperkite is a parameter optimization tool inspired by the way you train your machine learning models. From academia to industry, the tool is designed to optimize hyper-parameters and manage machine learning training experiments, using the most powerful algorithms in the most simple way.",
      author = "Hyperkite",
      author_email = "admin@hyperkite.ai",
