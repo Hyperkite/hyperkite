@@ -10,7 +10,9 @@ setup(
      description = "Hyperkite is a parameter optimization tool inspired by the way you train your machine learning models. From academia to industry, the tool is designed to optimize hyper-parameters and manage machine learning training experiments, using the most powerful algorithms in the most simple way.",
      author = "Hyperkite",
      author_email = "admin@hyperkite.ai",
-     keywords = ['hyper-parameter', 'hyper', 'parameter', 'optimization', 'bayesian'],
+     url = 'https://github.com/Hyperkite/hyperkite',
+     download_url = 'https://github.com/Hyperkite/hyperkite/archive/v_01.tar.gz',
+     keywords = ['hyper-parameter', 'optimization', 'tool', 'bayesian'],
      license = 'MIT',
      install_requires = ['requests', 'vcrpy', 'nose'],
      classifiers = [
