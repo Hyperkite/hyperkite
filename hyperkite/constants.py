@@ -1,4 +1,3 @@
-#BASE_URL = 'https://hyperkite.ai/'
-BASE_URL = 'http://localhost:5000/'
+BASE_URL = 'https://hyperkite.ai/'
 
 TEST_STUDY_KEY = ''
