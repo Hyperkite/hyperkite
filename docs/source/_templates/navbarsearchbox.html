@@ -1,0 +1,18 @@
+{%- if pagename != "search" %}
+<!-- Navbarsearchbox.html -->
+<form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" action="{{ pathto('search') }}" method="get">
+  <div class="form-group mb-0">
+    <div class="input-group input-group-alternative">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+    </div>
+  </div>
+  -
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+{%- endif %}

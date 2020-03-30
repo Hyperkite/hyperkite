@@ -1,0 +1,35 @@
+.headerlink {
+	  color: #ffdcdc;
+		padding-left: 1rem;
+}
+.headerlink:hover {
+	  color: #ff8989;
+}
+.headerlink:focus {
+	  color: #ff8989;
+}
+
+
+.highlight pre {
+	  padding: 1em;
+		margin: 1em 0;
+		overflow: auto;
+		border: 0;
+		border-radius: .2em;
+		box-shadow: 1px 1px 0.4em #777;
+	  background: #4b405f;
+		color: white;
+
+		/*text-shadow: 0 -0.1em 0.2em black;*/
+		font-family: Consolas, Monaco, 'AndaleMono', 'Ubuntu Mono', monospace;
+		font-size: 1em;
+		text-align: left;
+		white-space: pre;
+		word-spacing: normal;
+		word-break: normal;
+		word-wrap: normal;
+		line-height: 1.5;
+		tab-size: 4;
+}
+
+

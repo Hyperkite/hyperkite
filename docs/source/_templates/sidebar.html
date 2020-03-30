@@ -1,0 +1,48 @@
+<!-- Sidenav -->
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+  <div class="container-fluid">
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Brand -->
+    <a class="navbar-brand pt-0" href="/docs">
+        {%- if logo %}<img src="{{ pathto('_static/' + logo, 1) }}" class="navbar-brand-img" alt="Hyperkite">{%- endif %}
+    </a>
+    <div class="navbar-collapse collapse" id="sidenav-collapse-main">
+      <!-- Collapse header -->
+      <div class="navbar-collapse-header d-md-none">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            <a href="/">
+              <img src="_static/assets/img/brand/logo_color.png">
+            </a>
+          </div>
+          <div class="col-6 collapse-close">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="ni ni-spaceship text-red"></i> Back to Hyperkite
+          </a>
+        </li>
+      </ul>
+      <!-- Divider -->
+      <hr class="my-3">
+      <!-- Heading -->
+      <h6 class="navbar-heading text-muted">Contents</h6>
+      <!-- Navigation -->
+      <a href="/docs">Documentation</a>
+      <span>
+        {{ toctree(maxdepth=theme_globaltoc_depth|toint, collapse=False, includehidden=theme_globaltoc_includehidden|tobool) }}
+      </span>
+    </div>
+  </div>
+</nav>
