@@ -14,7 +14,7 @@ Install the Hyperkite package by running the following command in your terminal:
 
 .. code:: bash
 
-    pip install git+git://github.com/hyperkite/hyperkite.git
+    pip install hyperkite
 
 You should be good to go!
 
