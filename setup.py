@@ -11,7 +11,7 @@ setup(
      author = "Hyperkite",
      author_email = "admin@hyperkite.ai",
      url = 'https://github.com/Hyperkite/hyperkite',
-     download_url = 'https://github.com/Hyperkite/hyperkite/archive/v_01.tar.gz',
+     download_url = 'https://github.com/Hyperkite/hyperkite/archive/v0.1.1.tar.gz',
      keywords = ['hyper-parameter', 'optimization', 'tool', 'bayesian'],
      license = 'MIT',
      install_requires = ['requests', 'vcrpy', 'nose'],
