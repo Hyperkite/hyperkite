@@ -105,7 +105,7 @@ A summary of all hyperparameter types is shown in the table below.
             </div>
           </td>
           <td>
-            A <b>Discrete Uniform Range</b> defines a discrete (integer) hyperparameter as a uniform range <code class="docutils literal notranslate"><span class="pre indigo">from</span></code> a value <code class="docutils literal notranslate"><span class="pre indigo">to</span></code> another number.
+            A <b>Discrete Uniform Range</b> defines a discrete (rounded) hyperparameter as a uniform range <code class="docutils literal notranslate"><span class="pre indigo">from</span></code> a value <code class="docutils literal notranslate"><span class="pre indigo">to</span></code> another number.
           </td>
           <td>
             <code class="docutils literal notranslate">
@@ -147,7 +147,7 @@ A summary of all hyperparameter types is shown in the table below.
             </div>
           </td>
           <td>
-            A <b>Discrete Normal Distribution</b> defines a discrete (integer) hyperparameter as a normal distribution with a certain <code class="docutils literal notranslate"><span class="pre indigo">mean</span></code> and <code class="docutils literal notranslate"><span class="pre indigo">standard deviation</span></code>.
+            A <b>Discrete Normal Distribution</b> defines a discrete (rounded) hyperparameter as a normal distribution with a certain <code class="docutils literal notranslate"><span class="pre indigo">mean</span></code> and <code class="docutils literal notranslate"><span class="pre indigo">standard deviation</span></code>.
           </td>
           <td>
             <code class="docutils literal notranslate">
