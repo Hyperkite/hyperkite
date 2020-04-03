@@ -231,14 +231,15 @@
 <p>Let’s say we start two trials at the same time:</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hyperkite</span>
 
-<span class="n">study_key</span> <span class="o">=</span> <span class="s1">&#39;INSERT_KEY&#39;</span>
-<span class="n">first_trial</span> <span class="o">=</span> <span class="n">hyperkite</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">study_key</span><span class="p">)</span>
-<span class="n">second_trial</span> <span class="o">=</span> <span class="n">hyperkite</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">study_key</span><span class="p">)</span>
+<span class="n">STUDY_KEY</span> <span class="o">=</span> <span class="s1">&#39;INSERT_KEY&#39;</span>
+
+<span class="n">trial_1</span> <span class="o">=</span> <span class="n">hyperkite</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">STUDY_KEY</span><span class="p">)</span>
+<span class="n">trial_2</span> <span class="o">=</span> <span class="n">hyperkite</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">STUDY_KEY</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then we can report back results using the <code class="docutils literal notranslate"><span class="pre">report_loss</span></code> function in any order without running into problems:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">second_trial_report_loss</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
-<span class="n">first_trial</span><span class="o">.</span><span class="n">report_loss</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<p>Then we can report back results using the <code class="docutils literal notranslate"><span class="pre">report_loss</span></code> function in any order (e.g. reversed) without running into problems:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trial_2</span><span class="o">.</span><span class="n">report_loss</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">trial_1</span><span class="o">.</span><span class="n">report_loss</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

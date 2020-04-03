@@ -9,21 +9,21 @@ Defining Hyperparameters
 
 Sign in to Hyperkite_, and press the **Create Study** button.
 
-.. figure:: _static/screenshot_a.PNG
+.. figure:: _static/screenshot_a.png
     :scale: 50
     :figclass: align-center
 
 Add or remove the hyperparameters that you wish to optimize. Each hyperparameter needs to have a unique name, and a specified range.
 
 
-.. figure:: _static/screenshot_b.PNG
+.. figure:: _static/screenshot_b.png
     :scale: 50
     :figclass: align-center
     
 After creating the Study, you will obtain a so called Study ``key``. This key is used to let your Python code communicate with the defined Study.
 
 
-.. figure:: _static/screenshot_c.PNG
+.. figure:: _static/screenshot_c.png
     :scale: 50
     :figclass: align-center
    
@@ -48,7 +48,7 @@ A summary of all hyperparameter types is shown in the table below.
         <tr>
           <th scope="col">Parameter</th>
           <th scope="col">Best value</th>
-          <th scope="col" style="min-width: 17rem;">Example in `Hyperopt Format` (<a href="https://github.com/hyperopt/hyperopt/wiki/FMin#21-parameter-expressions">?</a>)</th>
+          <th scope="col" style="min-width: 18rem;">Example in `Hyperopt Format` (<a href="https://github.com/hyperopt/hyperopt/wiki/FMin#21-parameter-expressions">?</a>)</th>
         </tr>
       </thead>
       <tbody>

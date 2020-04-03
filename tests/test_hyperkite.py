@@ -68,7 +68,7 @@ class TestStudy(object):
         best_trial = study.get_best_trial()
 
         # Assert called correctly
-        self.mock_get.assert_called_with(urljoin(API_URL, f'studies/{study_key}/best_trial'))
+        self.mock_get.assert_called_with(urljoin(API_URL, 'studies/{}/best_trial'.format(study_key)))
 
         # Assert correct trial is returned
         assert_is_not_none(best_trial)
@@ -91,7 +91,7 @@ class TestStudy(object):
         best_trial = study.get_best_trial()
 
         # Assert called correctly
-        self.mock_get.assert_called_with(urljoin(API_URL, f'studies/{study_key}/best_trial'))
+        self.mock_get.assert_called_with(urljoin(API_URL, 'studies/{}/best_trial'.format(study_key)))
 
         # Assert correct trial is returned
         assert_is_not_none(best_trial)
@@ -115,7 +115,7 @@ class TestStudy(object):
         trial = study.new_trial()
 
         # Assert called correctly
-        self.mock_put.assert_called_with(urljoin(API_URL, f'studies/{study_key}/trials/new_trial'))
+        self.mock_put.assert_called_with(urljoin(API_URL, 'studies/{}/trials/new_trial'.format(study_key)))
 
         # Assert correct trial is returned
         assert_is_not_none(trial)
@@ -264,7 +264,7 @@ class TestTrial(object):
         loss = trial.get_loss()
 
         # Assert response True
-        self.mock_get.assert_called_with(urljoin(API_URL, f'studies/{study_key}/trials/{trial_key}/loss'))
+        self.mock_get.assert_called_with(urljoin(API_URL, 'studies/{}/trials/{}/loss'.format(study_key, trial_key)))
         assert_true(self.mock_get.called)
         assert_true(loss, 13)
 
@@ -304,7 +304,7 @@ class TestTrial(object):
         losses = trial.get_losses()
 
         # Assert response True
-        self.mock_get.assert_called_with(urljoin(API_URL, f'studies/{study_key}/trials/{trial_key}/loss'))
+        self.mock_get.assert_called_with(urljoin(API_URL, 'studies/{}/trials/{}/loss'.format(study_key, trial_key)))
 
         assert_true(self.mock_get.called)
         assert_equal(losses, [11, 12, 13])
@@ -344,7 +344,7 @@ class TestTrial(object):
         response = trial.report_loss(loss)
 
         # Assert response True
-        self.mock_put.assert_called_with(urljoin(API_URL, f'studies/{study_key}/trials/{trial_key}/loss'),
+        self.mock_put.assert_called_with(urljoin(API_URL, 'studies/{}/trials/{}/loss'.format(study_key, trial_key)),
                                           data=json.dumps({'loss': loss}),
                                           headers={'Content-Type': 'application/json'})
         assert_true(response.ok)

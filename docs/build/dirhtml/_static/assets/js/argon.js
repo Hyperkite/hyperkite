@@ -1,7 +1,7 @@
 /*!
 
 =========================================================
-* Argon Dashboard - v1.0.0
+* Argon Dashboard - v1.0.1 (CUSTOM ALTERED v1.0.0 -> v1.0.1)
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/argon-dashboard

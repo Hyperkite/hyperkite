@@ -12,15 +12,16 @@ Let's say we start two trials at the same time:
 
     import hyperkite
 
-    study_key = 'INSERT_KEY'
-    first_trial = hyperkite.new_trial(key=study_key)
-    second_trial = hyperkite.new_trial(key=study_key)
+    STUDY_KEY = 'INSERT_KEY'
+
+    trial_1 = hyperkite.new_trial(STUDY_KEY)
+    trial_2 = hyperkite.new_trial(STUDY_KEY)
     
-Then we can report back results using the ``report_loss`` function in any order without running into problems:
+Then we can report back results using the ``report_loss`` function in any order (e.g. reversed) without running into problems:
 
 .. code:: python
 
-    second_trial_report_loss(400)
-    first_trial.report_loss(500)
+    trial_2.report_loss(400)
+    trial_1.report_loss(500)
     
     

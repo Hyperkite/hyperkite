@@ -9,21 +9,21 @@ Defining Hyperparameters
 
 Sign in to Hyperkite_, and press the **Create Study** button.
 
-.. figure:: _static/screenshot_a.PNG
+.. figure:: _static/screenshot_a.png
     :scale: 50
     :figclass: align-center
 
 Add or remove the hyperparameters that you wish to optimize. Each hyperparameter needs to have a unique name, and a specified range.
 
 
-.. figure:: _static/screenshot_b.PNG
+.. figure:: _static/screenshot_b.png
     :scale: 50
     :figclass: align-center
     
 After creating the Study, you will obtain a so called Study ``key``. This key is used to let your Python code communicate with the defined Study.
 
 
-.. figure:: _static/screenshot_c.PNG
+.. figure:: _static/screenshot_c.png
     :scale: 50
     :figclass: align-center
    
@@ -48,7 +48,7 @@ A summary of all hyperparameter types is shown in the table below.
         <tr>
           <th scope="col">Parameter</th>
           <th scope="col">Best value</th>
-          <th scope="col" style="min-width: 17rem;">Example in `Hyperopt Format` (<a href="https://github.com/hyperopt/hyperopt/wiki/FMin#21-parameter-expressions">?</a>)</th>
+          <th scope="col" style="min-width: 18rem;">Example in `Hyperopt Format` (<a href="https://github.com/hyperopt/hyperopt/wiki/FMin#21-parameter-expressions">?</a>)</th>
         </tr>
       </thead>
       <tbody>
@@ -105,7 +105,7 @@ A summary of all hyperparameter types is shown in the table below.
             </div>
           </td>
           <td>
-            A <b>Discrete Uniform Range</b> defines a discrete (integer) hyperparameter as a uniform range <code class="docutils literal notranslate"><span class="pre indigo">from</span></code> a value <code class="docutils literal notranslate"><span class="pre indigo">to</span></code> another number.
+            A <b>Discrete Uniform Range</b> defines a discrete (rounded) hyperparameter as a uniform range <code class="docutils literal notranslate"><span class="pre indigo">from</span></code> a value <code class="docutils literal notranslate"><span class="pre indigo">to</span></code> another number.
           </td>
           <td>
             <code class="docutils literal notranslate">
@@ -147,7 +147,7 @@ A summary of all hyperparameter types is shown in the table below.
             </div>
           </td>
           <td>
-            A <b>Discrete Normal Distribution</b> defines a discrete (integer) hyperparameter as a normal distribution with a certain <code class="docutils literal notranslate"><span class="pre indigo">mean</span></code> and <code class="docutils literal notranslate"><span class="pre indigo">standard deviation</span></code>.
+            A <b>Discrete Normal Distribution</b> defines a discrete (rounded) hyperparameter as a normal distribution with a certain <code class="docutils literal notranslate"><span class="pre indigo">mean</span></code> and <code class="docutils literal notranslate"><span class="pre indigo">standard deviation</span></code>.
           </td>
           <td>
             <code class="docutils literal notranslate">

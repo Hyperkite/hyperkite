@@ -4,14 +4,7 @@
 Getting Started
 ***************
 
-This short introduction uses Hyperkite_ to:
-
-1. Build a neural network that classifies images.
-
-2. Train the model and optimize hyperparameters.
-
-3. And, finally, evaluate the accuracy of the model.
-
+In this short introduction we will show how to optimze hyperparameters using Hyperkite_.
 
 This tutorial is also available as an `iPython notebook`_.
 
@@ -23,138 +16,99 @@ Install the Hyperkite package using your terminal:
 
 .. code:: bash
 
-    pip install git+git://github.com/hyperkite/hyperkite.git
+    pip install hyperkite
 
 For other ways to install Hyperkite, check out the `Installation`_ page.
 
-Define parameter space
-======================
+Dummy Problem
+=============
+
+In a typical Machine Learning scenario, we aim to find the optimal hyperparameter values that result in the lowest loss on the validation set. For simplicity's sake, we avoid having to train and validate an entire model on every iteration and will show how to find the optimal parameters of the following dummy function:
+
+.. figure:: _static/black-box-function.png
+    :scale: 80
+    :alt: Dummy black-box function that we will optimize (best parameters at param_a = 1 and param_b = 1.5). 
+    :figclass: align-center
+
+The function takes two parameters as input ``param_a`` and ``param_b`` and achieves the lowest loss at parameter values ``param_a = 1`` and ``param_b = 1.5``. Let's see if we can find these optimal values using Hyperkite.
+
+Defining the hyperparameter space
+=================================
 
 Sign in to Hyperkite_, and press the **Create Study** button.
 
-.. figure:: _static/screenshot_a.PNG
+.. figure:: _static/screenshot_a.png
     :scale: 50
     :alt: After logging in you, press the **Create Study** button.
     :figclass: align-center
 
-Enter a study name, and select a **Uniform Range** hyperparameter between ``10`` and ``1000`` named ``n_layers``. Keep the default ``Hyperopt`` optimizer. Your screen should look like this:
+In the Study creation screen we can name our study ``getting_started_tutorial`` and create two hyperparmeters:
 
-.. figure:: _static/screenshot_b.PNG
+* A ``Categorical`` parameter named ``param_a`` with number of categories set to ``3``.
+* A ``Uniform Range`` parameter named ``param_b`` between ``-10`` and ``10``.
+
+Your screen should look like this:
+
+.. figure:: _static/screenshot_b.png
     :scale: 50
     :alt: Hyperkite interface for hyperparameter selection.
     :figclass: align-center
 
-When your done creating your Study, you will receive a unique Study ``key`` that we will need later in this tutorial to allow the Python code to communicate with the Study we have just created.
 
-.. figure:: _static/screenshot_c.PNG
+After defining the hyperparameters you want to optimize in your Study, you will obtain an unique Study `key` which is all we need to access the study from our python code.
+
+.. figure:: _static/screenshot_c.png
     :scale: 50
     :alt: Hyperkite will give you a unique Study key.
     :figclass: align-center
 
-Make sure you keep a copy of the Study `key` on hand, as we will need it later in this tutorial.
+Make sure you keep a copy of the Study ``key`` on hand, as we will need it later in this tutorial.
  
-Loading a Dataset
-=================
+Optimizing
+==========
 
-Load the handwritten digits `Digit Dataset`_ from sklearn:
 
-.. code:: python
+Now, we request a new set of hyperparameters we can create a new trial using ``trial = hyperkite.new_trial(study_key)``, which contains a dictionary of all hyperparameter values in ``trial.values``. After tring out these hyperparameter values we can report back the validation loss using ``trial.report_loss(loss)``.
 
-    from sklearn import datasets
-
-    # Load dataset
-    digits = datasets.load_digits()
-
-Split the dataset in ``training``, ``validation`` and ``testing`` subsets.
-
-==========  =========  ========
-Split       # Samples  Description
-==========  =========  ========
-Training    1400       The largest portion of the data samples are used to train the actual models. 
-Validation  150        A small portion the data is used to evaluate models with different hyperparameters. 
-Testing     247        Another portion is witheld until the very end to evaluate the final performance after tuning the model.
-==========  =========  ========
-
-.. code:: python
-
-    # Use the first 1400 digits for training
-    train_data = digits.data[:1400]
-    train_labels = digits.target[:1400]
-
-    # Use the next 150 digits for validation
-    val_data = digits.data[1500:1650]
-    val_labels = digits.target[1500:1650]
-
-    # Use the last (247) digits for testing
-    test_data = digits.data[1650:]
-    test_labels = digits.target[1650:]
-    
-    
-Train the model
-===============
-
-Let's use the ``MLPClassifier`` neural network classifier from ``sklearn`` to fit our data.
 
 .. code:: python
 
     import hyperkite
 
-    from sklearn.neural_network import MLPClassifier
-    from sklearn.metrics import log_loss
+    number_of_iterations = 100
 
-    for _ in range(100):
-        # Define model with Hyperkite
-        trial = hyperkite.new_trial(key='INSERT_KEY')
+    for i in range(number_of_iterations):
+        # Request new trial
+        trial = hyperkite.new_trial(STUDY_KEY)
 
-        model = MLPClassifier(alpha=trial['alpha'],
-                              learning_rate_init=trial['learnig_rate'])
+        # Try out hyperparameter values
+        param_a = trial.values['param_a']
+        param_b = trial.values['param_b']
 
-        # Train model
-        model.fit(train_data, train_labels)
+        loss = black_box_function(param_a=param_a, param_b=param_b)
 
-        # Report back validation loss
-        val_loss = log_loss(val_labels, model.predict_proba(val_data))
-        hyperkite.report_loss(val_loss)
+        # Report back loss
+        trial.report_loss(loss)
 
-    # Calculate accuracy on validation set
-    val_accuracy = sum(val_predictions == val_labels) / len(val_labels)
-    print('Validation accuracy:', val_accuracy)
 
-The ``hyperkite.new_trial`` function, with as argument the Study ``key`` is used to obtain values for the hyperparameters.
-After fitting our model, ``trial.report_loss(loss)`` is used to report the validation loss to Hyperkite.
+View optimal values
+===================
 
-Evaluate final performance
-==========================
-
-After running our Hyperparameter optimization, we can view the best combination of hyperparameters in our browser.
-Alternatively, let's use ``hyperkite.get_best_parameter`` to query the best set of hyperparameters.
+The optimal hyperparameter values can be viewed in the online interface, or requested directly using ``hyperkite.get_best_values(study_key)`` function:
 
 .. code:: python
 
+    print(hyperkite.get_best_values(STUDY_KEY))
 
-    hyperkite.get_best_parameters(key='')
+If everything went well, a dictionary that looks like this will be printed: ``{'param_a': 1, 'param_b': 1.5092954608845162}``.
 
-    # Set-up best found settings
-    model = MLPClassifier(alpha=trial['alpha'],
-                          learning_rate_init=trial['learnig_rate'])
-
-    # Train model
-    model.fit(train_data, train_labels)
-
-    # Evaluate final performance on test set
-    predictions = model.predict(test_data)
-    accuracy = sum(predictions == test_labels) / len(test_labels)
-    print('Final accuracy with Hyperkite:', accuracy)
-
-
-Sweet! The model performs a lot better than without hyperparameter tuning. Also note that using our study ``key`` we can request the best parameter values from hyperkite at any time later.
-
+Sweet! As we can see, we were able to find hyperparameter values very close to our optimal point.
 
 
 What's next?
 ============
 
-Well, now that you have learned how to use Hyperkite to optimize hyperparameters you can start applying this knowledge on your own machine learning models. Try to replace the MultiLayerPerceptron in the tutorial with other models from sklearn, or start training more advanced deep learning models using Tensorflow_ or PyTorch_ and try to tweak them using Hyperkite_.
+Now that you have learned how to use Hyperkite to optimize hyperparameters you can start applying this knowledge on your own machine learning models. Try to replace the MultiLayerPerceptron in the tutorial with other models from sklearn, or start training more advanced deep learning models using Tensorflow_ or PyTorch_ and try to tweak them using Hyperkite_.
 
     
 .. _iPython Notebook: https://github.com/hyperkite/hyperkite/blob/master/tutorial/Getting%20Started.ipynb

@@ -51,7 +51,7 @@ class Trial():
     def _sync_values(self):
         ''' Request values from trial. '''
 
-        path = urljoin(API_URL, f'studies/{self.study_key}/trials/{self.trial_key}/values')
+        path = urljoin(API_URL, 'studies/{}/trials/{}/values'.format(self.study_key, self.trial_key))
 
         response = requests.get(path)
 
@@ -72,7 +72,7 @@ class Trial():
 
         Returns: latest loss value from Hyperkite database '''
 
-        path = urljoin(API_URL, f'studies/{self.study_key}/trials/{self.trial_key}/loss')
+        path = urljoin(API_URL, 'studies/{}/trials/{}/loss'.format(self.study_key, self.trial_key))
 
         response = requests.get(path)
 
@@ -91,7 +91,7 @@ class Trial():
 
         Returns: list of all losses of trial from Hyperkite database. '''
 
-        path = urljoin(API_URL, f'studies/{self.study_key}/trials/{self.trial_key}/loss')
+        path = urljoin(API_URL, 'studies/{}/trials/{}/loss'.format(self.study_key, self.trial_key))
 
         response = requests.get(path)
 
@@ -143,7 +143,7 @@ class Study():
     def new_trial(self) -> Union[Trial, None]:
         '''Request new trial from Hyperkite '''
 
-        path = urljoin(API_URL, f'studies/{self.study_key}/trials/new_trial')
+        path = urljoin(API_URL, 'studies/{}/trials/new_trial'.format(self.study_key))
 
         response = requests.put(path)
 
@@ -181,7 +181,7 @@ class Study():
     def get_best_trial(self) -> Union[Trial, None]:
         ''' Request best trial from study. '''
 
-        path = urljoin(API_URL, f'studies/{self.study_key}/best_trial')
+        path = urljoin(API_URL, 'studies/{}/best_trial'.format(self.study_key))
 
         response = requests.get(path)
 

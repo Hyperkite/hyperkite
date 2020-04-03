@@ -153,10 +153,10 @@
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Getting Started</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
-<li><a class="reference internal" href="#define-parameter-space">Define parameter space</a></li>
-<li><a class="reference internal" href="#loading-a-dataset">Loading a Dataset</a></li>
-<li><a class="reference internal" href="#train-the-model">Train the model</a></li>
-<li><a class="reference internal" href="#evaluate-final-performance">Evaluate final performance</a></li>
+<li><a class="reference internal" href="#dummy-problem">Dummy Problem</a></li>
+<li><a class="reference internal" href="#defining-the-hyperparameter-space">Defining the hyperparameter space</a></li>
+<li><a class="reference internal" href="#optimizing">Optimizing</a></li>
+<li><a class="reference internal" href="#view-optimal-values">View optimal values</a></li>
 <li><a class="reference internal" href="#what-s-next">What’s next?</a></li>
 </ul>
 </li>
@@ -235,142 +235,79 @@
             
   <div class="section" id="getting-started">
 <span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>This short introduction uses <a class="reference external" href="https://hyperkite.ai/">Hyperkite</a> to:</p>
-<ol class="arabic simple">
-<li>Build a neural network that classifies images.</li>
-<li>Train the model and optimize hyperparameters.</li>
-<li>And, finally, evaluate the accuracy of the model.</li>
-</ol>
+<p>In this short introduction we will show how to optimze hyperparameters using <a class="reference external" href="https://hyperkite.ai/">Hyperkite</a>.</p>
 <p>This tutorial is also available as an <a class="reference external" href="https://github.com/hyperkite/hyperkite/blob/master/tutorial/Getting%20Started.ipynb">iPython notebook</a>.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Install the Hyperkite package using your terminal:</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">hyperkite</span><span class="o">/</span><span class="n">hyperkite</span><span class="o">.</span><span class="n">git</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">hyperkite</span>
 </pre></div>
 </div>
 <p>For other ways to install Hyperkite, check out the <a class="reference internal" href="#installation">Installation</a> page.</p>
 </div>
-<div class="section" id="define-parameter-space">
-<h2>Define parameter space<a class="headerlink" href="#define-parameter-space" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dummy-problem">
+<h2>Dummy Problem<a class="headerlink" href="#dummy-problem" title="Permalink to this headline">¶</a></h2>
+<p>In a typical Machine Learning scenario, we aim to find the optimal hyperparameter values that result in the lowest loss on the validation set. For simplicity’s sake, we avoid having to train and validate an entire model on every iteration and will show how to find the optimal parameters of the following dummy function:</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/black-box-function.png"><img alt="Dummy black-box function that we will optimize (best parameters at param_a = 1 and param_b = 1.5)." src="../_images/black-box-function.png" style="width: 547.2px; height: 393.6px;" /></a>
+</div>
+<p>The function takes two parameters as input <code class="docutils literal notranslate"><span class="pre">param_a</span></code> and <code class="docutils literal notranslate"><span class="pre">param_b</span></code> and achieves the lowest loss at parameter values <code class="docutils literal notranslate"><span class="pre">param_a</span> <span class="pre">=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">param_b</span> <span class="pre">=</span> <span class="pre">1.5</span></code>. Let’s see if we can find these optimal values using Hyperkite.</p>
+</div>
+<div class="section" id="defining-the-hyperparameter-space">
+<h2>Defining the hyperparameter space<a class="headerlink" href="#defining-the-hyperparameter-space" title="Permalink to this headline">¶</a></h2>
 <p>Sign in to <a class="reference external" href="https://hyperkite.ai/">Hyperkite</a>, and press the <strong>Create Study</strong> button.</p>
 <div class="align-center figure">
-<a class="reference internal image-reference" href="../_images/screenshot_a.PNG"><img alt="After logging in you, press the **Create Study** button." src="../_images/screenshot_a.PNG" style="width: 625.5px; height: 378.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/screenshot_a.png"><img alt="After logging in you, press the **Create Study** button." src="../_images/screenshot_a.png" style="width: 625.5px; height: 378.0px;" /></a>
 </div>
-<p>Enter a study name, and select a <strong>Uniform Range</strong> hyperparameter between <code class="docutils literal notranslate"><span class="pre">10</span></code> and <code class="docutils literal notranslate"><span class="pre">1000</span></code> named <code class="docutils literal notranslate"><span class="pre">n_layers</span></code>. Keep the default <code class="docutils literal notranslate"><span class="pre">Hyperopt</span></code> optimizer. Your screen should look like this:</p>
+<p>In the Study creation screen we can name our study <code class="docutils literal notranslate"><span class="pre">getting_started_tutorial</span></code> and create two hyperparmeters:</p>
+<ul class="simple">
+<li>A <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> parameter named <code class="docutils literal notranslate"><span class="pre">param_a</span></code> with number of categories set to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</li>
+<li>A <code class="docutils literal notranslate"><span class="pre">Uniform</span> <span class="pre">Range</span></code> parameter named <code class="docutils literal notranslate"><span class="pre">param_b</span></code> between <code class="docutils literal notranslate"><span class="pre">-10</span></code> and <code class="docutils literal notranslate"><span class="pre">10</span></code>.</li>
+</ul>
+<p>Your screen should look like this:</p>
 <div class="align-center figure">
-<a class="reference internal image-reference" href="../_images/screenshot_b.PNG"><img alt="Hyperkite interface for hyperparameter selection." src="../_images/screenshot_b.PNG" style="width: 694.0px; height: 472.5px;" /></a>
+<a class="reference internal image-reference" href="../_images/screenshot_b.png"><img alt="Hyperkite interface for hyperparameter selection." src="../_images/screenshot_b.png" style="width: 694.0px; height: 472.5px;" /></a>
 </div>
-<p>When your done creating your Study, you will receive a unique Study <code class="docutils literal notranslate"><span class="pre">key</span></code> that we will need later in this tutorial to allow the Python code to communicate with the Study we have just created.</p>
+<p>After defining the hyperparameters you want to optimize in your Study, you will obtain an unique Study <cite>key</cite> which is all we need to access the study from our python code.</p>
 <div class="align-center figure">
-<a class="reference internal image-reference" href="../_images/screenshot_c.PNG"><img alt="Hyperkite will give you a unique Study key." src="../_images/screenshot_c.PNG" style="width: 694.0px; height: 472.5px;" /></a>
+<a class="reference internal image-reference" href="../_images/screenshot_c.png"><img alt="Hyperkite will give you a unique Study key." src="../_images/screenshot_c.png" style="width: 694.0px; height: 472.5px;" /></a>
 </div>
-<p>Make sure you keep a copy of the Study <cite>key</cite> on hand, as we will need it later in this tutorial.</p>
+<p>Make sure you keep a copy of the Study <code class="docutils literal notranslate"><span class="pre">key</span></code> on hand, as we will need it later in this tutorial.</p>
 </div>
-<div class="section" id="loading-a-dataset">
-<h2>Loading a Dataset<a class="headerlink" href="#loading-a-dataset" title="Permalink to this headline">¶</a></h2>
-<p>Load the handwritten digits <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/datasets/plot_digits_last_image.html">Digit Dataset</a> from sklearn:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">datasets</span>
-
-<span class="c1"># Load dataset</span>
-<span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Split the dataset in <code class="docutils literal notranslate"><span class="pre">training</span></code>, <code class="docutils literal notranslate"><span class="pre">validation</span></code> and <code class="docutils literal notranslate"><span class="pre">testing</span></code> subsets.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="7%" />
-<col width="84%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Split</th>
-<th class="head"># Samples</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Training</td>
-<td>1400</td>
-<td>The largest portion of the data samples are used to train the actual models.</td>
-</tr>
-<tr class="row-odd"><td>Validation</td>
-<td>150</td>
-<td>A small portion the data is used to evaluate models with different hyperparameters.</td>
-</tr>
-<tr class="row-even"><td>Testing</td>
-<td>247</td>
-<td>Another portion is witheld until the very end to evaluate the final performance after tuning the model.</td>
-</tr>
-</tbody>
-</table>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the first 1400 digits for training</span>
-<span class="n">train_data</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">[:</span><span class="mi">1400</span><span class="p">]</span>
-<span class="n">train_labels</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">[:</span><span class="mi">1400</span><span class="p">]</span>
-
-<span class="c1"># Use the next 150 digits for validation</span>
-<span class="n">val_data</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1500</span><span class="p">:</span><span class="mi">1650</span><span class="p">]</span>
-<span class="n">val_labels</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">1500</span><span class="p">:</span><span class="mi">1650</span><span class="p">]</span>
-
-<span class="c1"># Use the last (247) digits for testing</span>
-<span class="n">test_data</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1650</span><span class="p">:]</span>
-<span class="n">test_labels</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="mi">1650</span><span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="train-the-model">
-<h2>Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this headline">¶</a></h2>
-<p>Let’s use the <code class="docutils literal notranslate"><span class="pre">MLPClassifier</span></code> neural network classifier from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> to fit our data.</p>
+<div class="section" id="optimizing">
+<h2>Optimizing<a class="headerlink" href="#optimizing" title="Permalink to this headline">¶</a></h2>
+<p>Now, we request a new set of hyperparameters we can create a new trial using <code class="docutils literal notranslate"><span class="pre">trial</span> <span class="pre">=</span> <span class="pre">hyperkite.new_trial(study_key)</span></code>, which contains a dictionary of all hyperparameter values in <code class="docutils literal notranslate"><span class="pre">trial.values</span></code>. After tring out these hyperparameter values we can report back the validation loss using <code class="docutils literal notranslate"><span class="pre">trial.report_loss(loss)</span></code>.</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hyperkite</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="k">import</span> <span class="n">MLPClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">log_loss</span>
+<span class="n">number_of_iterations</span> <span class="o">=</span> <span class="mi">100</span>
 
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="c1"># Define model with Hyperkite</span>
-    <span class="n">trial</span> <span class="o">=</span> <span class="n">hyperkite</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;INSERT_KEY&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_iterations</span><span class="p">):</span>
+    <span class="c1"># Request new trial</span>
+    <span class="n">trial</span> <span class="o">=</span> <span class="n">hyperkite</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">STUDY_KEY</span><span class="p">)</span>
 
-    <span class="n">model</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">trial</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">],</span>
-                          <span class="n">learning_rate_init</span><span class="o">=</span><span class="n">trial</span><span class="p">[</span><span class="s1">&#39;learnig_rate&#39;</span><span class="p">])</span>
+    <span class="c1"># Try out hyperparameter values</span>
+    <span class="n">param_a</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;param_a&#39;</span><span class="p">]</span>
+    <span class="n">param_b</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;param_b&#39;</span><span class="p">]</span>
 
-    <span class="c1"># Train model</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">black_box_function</span><span class="p">(</span><span class="n">param_a</span><span class="o">=</span><span class="n">param_a</span><span class="p">,</span> <span class="n">param_b</span><span class="o">=</span><span class="n">param_b</span><span class="p">)</span>
 
-    <span class="c1"># Report back validation loss</span>
-    <span class="n">val_loss</span> <span class="o">=</span> <span class="n">log_loss</span><span class="p">(</span><span class="n">val_labels</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">val_data</span><span class="p">))</span>
-    <span class="n">hyperkite</span><span class="o">.</span><span class="n">report_loss</span><span class="p">(</span><span class="n">val_loss</span><span class="p">)</span>
-
-<span class="c1"># Calculate accuracy on validation set</span>
-<span class="n">val_accuracy</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">val_predictions</span> <span class="o">==</span> <span class="n">val_labels</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">val_labels</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Validation accuracy:&#39;</span><span class="p">,</span> <span class="n">val_accuracy</span><span class="p">)</span>
+    <span class="c1"># Report back loss</span>
+    <span class="n">trial</span><span class="o">.</span><span class="n">report_loss</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">hyperkite.new_trial</span></code> function, with as argument the Study <code class="docutils literal notranslate"><span class="pre">key</span></code> is used to obtain values for the hyperparameters.
-After fitting our model, <code class="docutils literal notranslate"><span class="pre">trial.report_loss(loss)</span></code> is used to report the validation loss to Hyperkite.</p>
 </div>
-<div class="section" id="evaluate-final-performance">
-<h2>Evaluate final performance<a class="headerlink" href="#evaluate-final-performance" title="Permalink to this headline">¶</a></h2>
-<p>After running our Hyperparameter optimization, we can view the best combination of hyperparameters in our browser.
-Alternatively, let’s use <code class="docutils literal notranslate"><span class="pre">hyperkite.get_best_parameter</span></code> to query the best set of hyperparameters.</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hyperkite</span><span class="o">.</span><span class="n">get_best_parameters</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-<span class="c1"># Set-up best found settings</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">trial</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">],</span>
-                      <span class="n">learning_rate_init</span><span class="o">=</span><span class="n">trial</span><span class="p">[</span><span class="s1">&#39;learnig_rate&#39;</span><span class="p">])</span>
-
-<span class="c1"># Train model</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span>
-
-<span class="c1"># Evaluate final performance on test set</span>
-<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">predictions</span> <span class="o">==</span> <span class="n">test_labels</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_labels</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Final accuracy with Hyperkite:&#39;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+<div class="section" id="view-optimal-values">
+<h2>View optimal values<a class="headerlink" href="#view-optimal-values" title="Permalink to this headline">¶</a></h2>
+<p>The optimal hyperparameter values can be viewed in the online interface, or requested directly using <code class="docutils literal notranslate"><span class="pre">hyperkite.get_best_values(study_key)</span></code> function:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hyperkite</span><span class="o">.</span><span class="n">get_best_values</span><span class="p">(</span><span class="n">STUDY_KEY</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Sweet! The model performs a lot better than without hyperparameter tuning. Also note that using our study <code class="docutils literal notranslate"><span class="pre">key</span></code> we can request the best parameter values from hyperkite at any time later.</p>
+<p>If everything went well, a dictionary that looks like this will be printed: <code class="docutils literal notranslate"><span class="pre">{'param_a':</span> <span class="pre">1,</span> <span class="pre">'param_b':</span> <span class="pre">1.5092954608845162}</span></code>.</p>
+<p>Sweet! As we can see, we were able to find hyperparameter values very close to our optimal point.</p>
 </div>
 <div class="section" id="what-s-next">
 <h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
-<p>Well, now that you have learned how to use Hyperkite to optimize hyperparameters you can start applying this knowledge on your own machine learning models. Try to replace the MultiLayerPerceptron in the tutorial with other models from sklearn, or start training more advanced deep learning models using <a class="reference external" href="https://www.tensorflow.org/tutorials/quickstart/beginner">Tensorflow</a> or <a class="reference external" href="https://pytorch.org/tutorials/">PyTorch</a> and try to tweak them using <a class="reference external" href="https://hyperkite.ai/">Hyperkite</a>.</p>
+<p>Now that you have learned how to use Hyperkite to optimize hyperparameters you can start applying this knowledge on your own machine learning models. Try to replace the MultiLayerPerceptron in the tutorial with other models from sklearn, or start training more advanced deep learning models using <a class="reference external" href="https://www.tensorflow.org/tutorials/quickstart/beginner">Tensorflow</a> or <a class="reference external" href="https://pytorch.org/tutorials/">PyTorch</a> and try to tweak them using <a class="reference external" href="https://hyperkite.ai/">Hyperkite</a>.</p>
 </div>
 </div>
 
