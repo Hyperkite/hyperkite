@@ -37,7 +37,7 @@ Example code snippet explaining how to request new values for hyperparameter tri
     import hyperkite
     trial = hyperkite.new_trial('INSERT_STUDY_KEY')
 
-    loss = train_and_evaluate_model(trial.arguments) # Replace this line with own code
+    loss = train_and_evaluate_model(trial.values) # Replace this line with own code
 
     hyperkite.report_loss(loss)
 
