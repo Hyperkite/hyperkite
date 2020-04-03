@@ -50,5 +50,5 @@ An extensive description of the Hyperkite framework can be found in the Document
 
 .. _Hyperkite: https://hyperkite.ai
 .. _Documentation: https://hyperkite.ai/docs
-.. _Getting Started: https://hyperkite.ai/docs/getting-started
+.. _Getting Started: https://hyperkite.ai/docs/getting-started/
 .. _Installation: https://hyperkite.ai/docs/installation/
