@@ -1,0 +1,208 @@
+{% set bootstrap_version, navbar_version = "3.4.1", "" %}
+{% set bs_span_prefix = "col-md-" %}
+
+{%- set render_sidebar = (not embedded) and (not theme_nosidebar|tobool) and sidebars %}
+
+{%- set bs_content_width = render_sidebar and "9" or "12"%}
+
+{%- block doctype -%}{%- if html5_doctype %}
+<!DOCTYPE html>
+{%- else %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{%- endif %}{%- endblock %}
+
+
+{%- macro bsidebar() %}
+	{%- if render_sidebar %}
+		{%- for sidebartemplate in sidebars %}
+			{%- include sidebartemplate %}
+		{%- endfor %}
+	{%- endif %}
+{%- endmacro %}
+
+{% macro navBar() %}
+{% include "navbar.html" %}
+{% endmacro %}
+
+
+
+{%- macro script() %}
+    <script type="text/javascript" id="documentation_options" data-url_root="{{ pathto('', 1) }}" src="{{ pathto('_static/documentation_options.js', 1) }}"></script>
+    {%- for js in script_files %}
+    {{ js_tag(js) }}
+    {%- endfor %}
+{%- endmacro %}
+
+{%- macro css() %}
+    {%- for css in css_files %}
+      {%- if css|attr("filename") %}
+    {{ css_tag(css) }}
+      {%- else %}
+    <link rel="stylesheet" href="{{ pathto(css, 1) }}" type="text/css" />
+      {%- endif %}
+    {%- endfor %}
+{%- endmacro %}
+
+{%- if html_tag %}
+{{ html_tag }}
+{%- else %}
+<html xmlns="http://www.w3.org/1999/xhtml"{% if language is not none %} lang="{{ language }}"{% endif %}>
+{%- endif %}
+  <head>
+    <meta charset='utf-8'>
+    {%- block htmltitle %}
+    <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
+    {%- endblock %}
+    {%- block css %}
+    {{- css() }}
+    {%- endblock %}
+    {%- if not html5_doctype and not skip_ua_compatible %}
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    {%- endif %}
+    {%- if use_meta_charset or html5_doctype %}
+    <meta charset="{{ encoding }}" />
+    {%- else %}
+    {%- endif %}
+    {%- block scripts %}
+    {{- script() }}
+    {%- endblock %}
+    {{- metatags }}
+    <meta http-equiv="Content-Type" content="text/html; charset={{ encoding }}" />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    {%- if not embedded %}
+    {%- if pageurl %}
+    <link rel="canonical" href="{{ pageurl }}" />
+    {%- endif %}
+    {%- if use_opensearch %}
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
+          href="{{ pathto('_static/opensearch.xml', 1) }}"/>
+    {%- endif %}
+    {%- if favicon %}
+    <link rel="shortcut icon" href="{{ pathto('_static/' + favicon, 1) }}"/>
+    {%- endif %}
+    {%- endif %}
+{%- block linktags %}
+    {%- if hasdoc('about') %}
+    <link rel="author" title="{{ _('About these documents') }}" href="{{ pathto('about') }}" />
+    {%- endif %}
+    {%- if hasdoc('genindex') %}
+    <link rel="index" title="{{ _('Index') }}" href="{{ pathto('genindex') }}" />
+    {%- endif %}
+    {%- if hasdoc('search') %}
+    <link rel="search" title="{{ _('Search') }}" href="{{ pathto('search') }}" />
+    {%- endif %}
+    {%- if hasdoc('copyright') %}
+    <link rel="copyright" title="{{ _('Copyright') }}" href="{{ pathto('copyright') }}" />
+    {%- endif %}
+    {%- if next %}
+    <link rel="next" title="{{ next.title|striptags|e }}" href="{{ next.link|e }}" />
+    {%- endif %}
+    {%- if prev %}
+    <link rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}" />
+    {%- endif %}
+{%- endblock %}
+{%- block extrahead %} {% endblock %}
+  </head>
+  {%- block body_tag %}<body>{% endblock %}
+  {%- block header %}{% endblock %}
+
+<!---
+<link href="_static/assets/img/brand/favicon.png" rel="icon" type="image/png">
+-->
+
+  {% block relbar1 %}{% endblock %}
+  {% block relbar2 %}{% endblock %}
+  {% block sidebarsourcelink %}{% endblock %}
+
+  {%- block content %}
+
+{{ bsidebar() }}
+
+<div class="main-content">
+  {{ navBar() }}
+
+  <div class="header bg-gradient-blue pb-8 pt-5 pt-md-8">
+		<div class="container-fluid">
+			<div class="header-body">
+			</div>
+    </div>
+	</div>
+
+	<div class="container-fluid mt--7">
+		<div class="row">
+      <div class="col">
+        <div style="max-width: 1400px" class="card shadow">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="mb-0">
+                  {{ title|e }}
+                </h3>
+              </div>
+              <ul class="nav nav-footer justify-content-cennter justify-content-xl-end">
+              {% if theme_navbar_sidebarrel %}
+                {% block sidebarrel %}
+                  {% include "relations.html" %}
+                {% endblock %}
+              {% endif %}
+              </ul>
+            </div>
+          </div>
+          <div class="card-body pt-0 pt-md-4 pb-md-6 content" role="main">
+            {% block body %}{% endblock %}
+          </div>
+        </div>
+      </div>
+		</div>
+		{%- block footer %}
+		<footer class="footer">
+			<div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-muted">
+            {%- if show_copyright %}
+              {%- if hasdoc('copyright') %}
+                {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %}<br/>
+              {%- else %}
+                {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}.{% endtrans %}<br/>
+              {%- endif %}
+            {%- endif %}
+            {%- if last_updated %}
+              {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}<br/>
+            {%- endif %}
+            {%- if show_sphinx %}
+              <span style="font-size: 15px">
+                {% trans sphinx_version=sphinx_version|e %}Generated using <a href="http://sphinx-doc.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %}
+              </span>
+            {%- endif %}
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <ul class="nav nav-footer justify-content-cennter justify-content-xl-end">
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Back to top</a>
+              {% if theme_source_link_position == "footer" %}
+                <br/>
+                {% include "sourcelink.html" %}
+              {% endif %}
+            </li>
+          </ul>
+        </div>
+			</div>
+		</footer>
+		{%- endblock %}
+	</div>
+</div>
+
+<script type="text/javascript" src="_static/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="_static/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="_static/assets/js/argon.js?v=1.0.0"></script>
+<script type="text/javascript" src="_static/assets/js/prism.js"></script>
+
+{%- endblock %}
+
+  </body>
+</html>

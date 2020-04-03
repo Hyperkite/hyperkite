@@ -1,0 +1,317 @@
+/* PrismJS 1.17.1
+https://prismjs.com/download.html#themes=prism-dark&languages=python&plugins=toolbar+copy-to-clipboard */
+/**
+ * prism.js Dark theme for JavaScript, CSS and HTML
+ * Based on the slides of the talk “/Reg(exp){2}lained/”
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: white;
+	background: none;
+	/*text-shadow: 0 -.1em .2em black;*/
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+code[class*="language-blue"],
+pre[class*="language-blue"] {
+	color: hsl(190, 90%, 60%);
+	background: none;
+	/*text-shadow: 0 -.1em .2em black;*/
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+pre[class*="language-"],
+:not(pre) > code[class*="language-"] {
+	background: #4b405f;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em 1em;
+	margin: 1.4em 0;
+	overflow: auto;
+	border: 0;
+	border-radius: .2em;
+	box-shadow: 1px 1px 0.4em #777;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .15em .2em .05em;
+	border-radius: .3em;
+	border: 0;
+	box-shadow: 1px 1px .3em -.1em black inset;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: hsl(30, 20%, 50%);
+}
+
+.token.punctuation {
+	opacity: .7;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+	color: hsl(350, 40%, 70%);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: hsl(190, 90%, 60%);
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: hsl(40, 90%, 60%);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: hsl(350, 40%, 70%);
+}
+
+.token.regex,
+.token.important {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+.token.deleted {
+	color: red;
+}
+
+div.code-toolbar {
+	position: relative;
+}
+
+div.code-toolbar > .toolbar {
+	position: absolute;
+	top: .3em;
+	right: .2em;
+	transition: opacity 0.3s ease-in-out;
+	opacity: 0;
+}
+
+div.code-toolbar:hover > .toolbar {
+	opacity: 1;
+}
+
+/* Separate line b/c rules are thrown out if selector is invalid.
+   IE11 and old Edge versions don't support :focus-within. */
+div.code-toolbar:focus-within > .toolbar {
+	opacity: 1;
+}
+
+div.code-toolbar > .toolbar .toolbar-item {
+	display: inline-block;
+}
+
+div.code-toolbar > .toolbar a {
+	cursor: pointer;
+}
+
+div.code-toolbar > .toolbar button {
+	background: none;
+	border: 0;
+	color: inherit;
+	font: inherit;
+	line-height: normal;
+	overflow: visible;
+	padding: 0;
+	-webkit-user-select: none; /* for button */
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+div.code-toolbar > .toolbar a,
+div.code-toolbar > .toolbar button,
+div.code-toolbar > .toolbar span {
+	color: #bbb;
+	font-size: .8em;
+	padding: 0 .5em;
+	background: #4b405f;
+	background: rgba(224, 224, 224, 0.2);
+	box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
+	border-radius: .5em;
+}
+
+div.code-toolbar > .toolbar a:hover,
+div.code-toolbar > .toolbar a:focus,
+div.code-toolbar > .toolbar button:hover,
+div.code-toolbar > .toolbar button:focus,
+div.code-toolbar > .toolbar span:hover,
+div.code-toolbar > .toolbar span:focus {
+	color: inherit;
+	text-decoration: none;
+}
+
+.card-pricing.zoom-in {
+    z-index: 1;
+    transform: scale(1.1);
+}
+
+
+
+/* Pygments Highlight CSS */
+
+
+.highlight .err { color:#f0dfaf !important;background-color:#6f6f6f !important; }
+.highlight .cs { color:#dca3a3 !important;background-color:#8c5353 !important; }
+.highlight .nf { color:#93e0e3 !important; }
+.highlight .c,.highlight .cm,.highlight .c1 { color:#5c888b !important; }
+.highlight .g,.highlight .l,.highlight .x,.highlight .ge,.highlight .gs,.highlight .ld,.highlight .ni,
+.highlight .nl,.highlight .nx,.highlight .py,.highlight .n,.highlight .go,
+.highlight .h { color:#6ca0a3 !important; }
+.highlight .k { color:#f0dfaf !important; }
+.highlight .s1 { color:#bc8383 !important; }
+.highlight .nb,.highlight .bp { color:#8cd0d3 !important; }
+.highlight .nc,.highlight .nn { color:#7cb8bb !important; }
+.highlight .o,.highlight .p,.highlight .na,.highlight .ne { color:#dcdccc !important; }
+.highlight .gp,.highlight .w,.highlight .gh,.highlight .gu { color:#656555 !important; }
+.highlight .cp,.highlight .s,.highlight .sb,.highlight .sc,.highlight .sd,.highlight .s2,.highlight .se,
+.highlight .sh,.highlight .si,.highlight .ss,.highlight .kc,.highlight .kd,.highlight .kn,.highlight .kp,
+.highlight .kr,.highlight .kt,.highlight .nt,.highlight .ow { color:#8fb28f !important; }
+.highlight .gr,.highlight .gt,.highlight .m,.highlight .mf,.highlight .mh,.highlight .mi,
+.highlight .mo,.highlight .sr,.highlight .il { color:#9c6363 !important; }
+.highlight .no,.highlight .nv,.highlight .vc,.highlight .vg,.highlight .vi,.highlight .nd,
+.highlight .sx { color:#dfaf8f !important; }
+
+.highlight .hll { background-color: #515151 !important; }
+.highlight .c { color: 1b9999 !important; } 
+.highlight .err { color: #f2777a !important; } 
+.highlight .k { color: #cc99cc !important; }
+.highlight .l { color: #f99157 !important; } 
+.highlight .n, .highlight .h { color: #cccccc !important; } 
+.highlight .o { color: #66cccc !important; } 
+.highlight .p { color: #cccccc !important; } 
+.highlight .cm { color: 1b9999 !important; } 
+.highlight .cp { color: 1b9999 !important; } 
+.highlight .c1 { color: 1b9999 !important; } 
+.highlight .cs { color: 1b9999 !important; } 
+.highlight .gd { color: #f2777a !important; } 
+.highlight .ge { font-style: italic !important; } 
+.highlight .gh { color: #cccccc !important; font-weight: bold !important; } 
+.highlight .gi { color: 1bcc99 !important; } 
+.highlight .gp { color: 1b9999 !important; font-weight: bold !important; } 
+.highlight .gs { font-weight: bold !important; } 
+.highlight .gu { color: #66cccc !important; font-weight: bold !important; } 
+.highlight .kc { color: #cc99cc !important; } 
+.highlight .kd { color: #cc99cc !important; } 
+.highlight .kn { color: #66cccc !important; } 
+.highlight .kp { color: #cc99cc !important; } 
+.highlight .kr { color: #cc99cc !important; } 
+.highlight .kt { color: #ffcc66 !important; } 
+.highlight .ld { color: 1bcc99 !important; } 
+.highlight .m { color: #f99157 !important; } 
+.highlight .s { color: 1bcc99 !important; } 
+.highlight .na { color: #6699cc !important; } 
+.highlight .nb { color: #cccccc !important; } 
+.highlight .nc { color: #ffcc66 !important; } 
+.highlight .no { color: #f2777a !important; } 
+.highlight .nd { color: #66cccc !important; } 
+.highlight .ni { color: #cccccc !important; } 
+.highlight .ne { color: #f2777a !important; } 
+.highlight .nf { color: #6699cc !important; } 
+.highlight .nl { color: #cccccc !important; } 
+.highlight .nn { color: #ffcc66 !important; } 
+.highlight .nx { color: #6699cc !important; } 
+.highlight .py { color: #cccccc !important; } 
+.highlight .nt { color: #66cccc !important; } 
+.highlight .nv { color: #f2777a !important; } 
+.highlight .ow { color: #66cccc !important; } 
+.highlight .w { color: #cccccc !important; } 
+.highlight .mf { color: #f99157 !important; } 
+.highlight .mh { color: #f99157 !important; } 
+.highlight .mi { color: #f99157 !important; } 
+.highlight .mo { color: #f99157 !important; } 
+.highlight .sb { color: 1bcc99 !important; } 
+.highlight .sc { color: #cccccc !important; } 
+.highlight .sd { color: 1b9999 !important; } 
+.highlight .s2 { color: 1bcc99 !important; } 
+.highlight .se { color: #f99157 !important; } 
+.highlight .sh { color: 1bcc99 !important; } 
+.highlight .si { color: #f99157 !important; } 
+.highlight .sx { color: 1bcc99 !important; } 
+.highlight .sr { color: 1bcc99 !important; } 
+.highlight .s1 { color: 1bcc99 !important; } 
+.highlight .ss { color: 1bcc99 !important; } 
+.highlight .bp { color: #cccccc !important; } 
+.highlight .vc { color: #f2778b !important; } 
+.highlight .vg { color: #f2778b !important; } 
+.highlight .vi { color: #f2778a !important; } 
+.highlight .il { color: #f99167 !important; } 

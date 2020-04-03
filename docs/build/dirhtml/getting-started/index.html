@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset='utf-8'>
+    <title>Getting Started</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
+    <link rel="stylesheet" type="text/css" href="../_static/assets/vendor/nucleo/css/nucleo.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/assets/css/prism.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/../_static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../_static/../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/../_static/bootstrap-sphinx.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Defining Hyperparameters" href="../defining-hyperparameters/" />
+    <link rel="prev" title="Installation" href="../installation/" /> 
+  </head><body>
+
+<!---
+<link href="_static/assets/img/brand/favicon.png" rel="icon" type="image/png">
+-->
+
+  
+  
+  
+
+<!-- Sidenav -->
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+  <div class="container-fluid">
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Brand -->
+    <a class="navbar-brand pt-0" href="/docs"><img src="../_static/logo_docs.png" class="navbar-brand-img" alt="Hyperkite">
+    </a>
+    <div class="navbar-collapse collapse" id="sidenav-collapse-main">
+      <!-- Collapse header -->
+      <div class="navbar-collapse-header d-md-none">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            <a href="/">
+              <img src="_static/assets/img/brand/logo_color.png">
+            </a>
+          </div>
+          <div class="col-6 collapse-close">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="ni ni-spaceship text-red"></i> Back to Hyperkite
+          </a>
+        </li>
+      </ul>
+      <!-- Divider -->
+      <hr class="my-3">
+      <!-- Heading -->
+      <h6 class="navbar-heading text-muted">Contents</h6>
+      <!-- Navigation -->
+      <a href="/docs">Documentation</a>
+      <span>
+        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defining-hyperparameters/">Defining Hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../running-experiments/">Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithms/">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parallelizing/">Parallelizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging-results/">Logging Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other-languages/">Other Languages</a></li>
+</ul>
+
+      </span>
+    </div>
+  </div>
+</nav>
+
+<div class="main-content">
+  
+<div class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <!--
+    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">
+      Docs</a>
+    -->
+    <ul class="navbar-nav align-items-center d-none d-md-flex">
+      
+        <a class="nav-link pr-0" href="https://hyperkite.ai">Hyperkite</a>
+        <a class="nav-link pr-0" href="https://hyperkite.ai/docs">Docs</a>
+        <a class="nav-link pr-0" href="https://hyperkite.ai/docs/getting-started/">Getting-started</a>
+        <a class="nav-link pr-0" href="https://hyperkite.ai/docs/installation/">Installation</a>
+      
+      
+        <!--
+<li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../">Hyperkite <b class="caret"></b></a>
+  <ul class="navbar-nav ml-lg-auto"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc">
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../defining-hyperparameters/">Defining Hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../running-experiments/">Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithms/">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parallelizing/">Parallelizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging-results/">Logging Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other-languages/">Other Languages</a></li>
+</ul>
+
+  </ul>
+</li>
+-->
+        
+          <!--
+  <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#dummy-problem">Dummy Problem</a></li>
+<li><a class="reference internal" href="#defining-the-hyperparameter-space">Defining the hyperparameter space</a></li>
+<li><a class="reference internal" href="#optimizing">Optimizing</a></li>
+<li><a class="reference internal" href="#view-optimal-values">View optimal values</a></li>
+<li><a class="reference internal" href="#what-s-next">What’s next?</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+-->
+        
+      
+      
+      
+    </ul>
+    
+      
+<!-- Navbarsearchbox.html -->
+<form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" action="../search/" method="get">
+  <div class="form-group mb-0">
+    <div class="input-group input-group-alternative">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+      <input type="text" name="q" class="form-control" placeholder="Search" />
+    </div>
+  </div>
+  -
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+    
+  </div>
+</div>
+
+
+  <div class="header bg-gradient-blue pb-8 pt-5 pt-md-8">
+		<div class="container-fluid">
+			<div class="header-body">
+			</div>
+    </div>
+	</div>
+
+	<div class="container-fluid mt--7">
+		<div class="row">
+      <div class="col">
+        <div style="max-width: 1400px" class="card shadow">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="mb-0">
+                  Getting Started
+                </h3>
+              </div>
+              <ul class="nav nav-footer justify-content-cennter justify-content-xl-end">
+              
+                
+                  
+  <li class="nav-item">
+    <a class="nav-link" href="../installation/" title="Previous Chapter: Installation">
+      <span class="glyphicon glyphicon-chevron-left visible-sm"></span>
+      <span class="hidden-sm hidden-tablet">&laquo; Installation</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../defining-hyperparameters/" title="Next Chapter: Defining Hyperparameters">
+      <span class="glyphicon glyphicon-chevron-right visible-sm"></span>
+      <span class="hidden-sm hidden-tablet">Defining Hype... &raquo;</span>
+    </a>
+  </li>
+                
+              
+              </ul>
+            </div>
+          </div>
+          <div class="card-body pt-0 pt-md-4 pb-md-6 content" role="main">
+            
+  <div class="section" id="getting-started">
+<span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>In this short introduction we will show how to optimze hyperparameters using <a class="reference external" href="https://hyperkite.ai/">Hyperkite</a>.</p>
+<p>This tutorial is also available as an <a class="reference external" href="https://github.com/hyperkite/hyperkite/blob/master/tutorial/Getting%20Started.ipynb">iPython notebook</a>.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Install the Hyperkite package using your terminal:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">hyperkite</span>
+</pre></div>
+</div>
+<p>For other ways to install Hyperkite, check out the <a class="reference internal" href="#installation">Installation</a> page.</p>
+</div>
+<div class="section" id="dummy-problem">
+<h2>Dummy Problem<a class="headerlink" href="#dummy-problem" title="Permalink to this headline">¶</a></h2>
+<p>In a typical Machine Learning scenario, we aim to find the optimal hyperparameter values that result in the lowest loss on the validation set. For simplicity’s sake, we avoid having to train and validate an entire model on every iteration and will show how to find the optimal parameters of the following dummy function:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">black_box_function</span><span class="p">(</span><span class="n">param_a</span><span class="p">,</span> <span class="n">param_b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Function we will try to minimize. &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">param_a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">param_b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">param_b</span> <span class="o">+</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">param_a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">param_b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">param_b</span>
+    <span class="k">elif</span> <span class="n">param_a</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">param_b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">param_b</span>
+</pre></div>
+</div>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/black_box_function.png"><img alt="Dummy black-box function that we will optimize (best parameters at param_a = 1 and param_b = 1.5)." src="../_images/black_box_function.png" style="width: 547.2px; height: 393.6px;" /></a>
+</div>
+<p>The function takes two parameters as input <code class="docutils literal notranslate"><span class="pre">param_a</span></code> and <code class="docutils literal notranslate"><span class="pre">param_b</span></code> and achieves the lowest loss at parameter values <code class="docutils literal notranslate"><span class="pre">param_a</span> <span class="pre">=</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">param_b</span> <span class="pre">=</span> <span class="pre">1.5</span></code>. Let’s see if we can find these optimal values using Hyperkite.</p>
+</div>
+<div class="section" id="defining-the-hyperparameter-space">
+<h2>Defining the hyperparameter space<a class="headerlink" href="#defining-the-hyperparameter-space" title="Permalink to this headline">¶</a></h2>
+<p>Sign in to <a class="reference external" href="https://hyperkite.ai/">Hyperkite</a>, and press the <strong>Create Study</strong> button.</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/screenshot_a.png"><img alt="After logging in you, press the **Create Study** button." src="../_images/screenshot_a.png" style="width: 960.0px; height: 515.0px;" /></a>
+</div>
+<p>In the Study creation screen we can name our study <code class="docutils literal notranslate"><span class="pre">getting_started_tutorial</span></code> and create two hyperparmeters:</p>
+<ul class="simple">
+<li>A <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> parameter named <code class="docutils literal notranslate"><span class="pre">param_a</span></code> with number of categories set to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</li>
+<li>A <code class="docutils literal notranslate"><span class="pre">Uniform</span> <span class="pre">Range</span></code> parameter named <code class="docutils literal notranslate"><span class="pre">param_b</span></code> between <code class="docutils literal notranslate"><span class="pre">-10</span></code> and <code class="docutils literal notranslate"><span class="pre">10</span></code>.</li>
+</ul>
+<p>Your screen should look like this:</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/screenshot_b.png"><img alt="Hyperkite interface for hyperparameter selection." src="../_images/screenshot_b.png" style="width: 960.0px; height: 515.0px;" /></a>
+</div>
+<p>After defining the hyperparameters you want to optimize in your Study, you will obtain an unique Study <cite>key</cite> which is all we need to access the study from our python code.</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/screenshot_c.png"><img alt="Hyperkite will give you a unique Study key." src="../_images/screenshot_c.png" style="width: 960.0px; height: 515.0px;" /></a>
+</div>
+<p>Make sure you keep a copy of the Study <code class="docutils literal notranslate"><span class="pre">key</span></code> on hand, as we will need it later in this tutorial.</p>
+</div>
+<div class="section" id="optimizing">
+<h2>Optimizing<a class="headerlink" href="#optimizing" title="Permalink to this headline">¶</a></h2>
+<p>Now, we request a new set of hyperparameters we can create a new trial using <code class="docutils literal notranslate"><span class="pre">trial</span> <span class="pre">=</span> <span class="pre">hyperkite.new_trial(study_key)</span></code>, which contains a dictionary of all hyperparameter values in <code class="docutils literal notranslate"><span class="pre">trial.values</span></code>. After trying out these hyperparameter values we can report back the validation loss using <code class="docutils literal notranslate"><span class="pre">trial.report_loss(loss)</span></code>.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hyperkite</span>
+
+<span class="n">number_of_iterations</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_iterations</span><span class="p">):</span>
+    <span class="c1"># Request new trial</span>
+    <span class="n">trial</span> <span class="o">=</span> <span class="n">hyperkite</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="n">STUDY_KEY</span><span class="p">)</span>
+
+    <span class="c1"># Try out hyperparameter values</span>
+    <span class="n">param_a</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;param_a&#39;</span><span class="p">]</span>
+    <span class="n">param_b</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;param_b&#39;</span><span class="p">]</span>
+
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">black_box_function</span><span class="p">(</span><span class="n">param_a</span><span class="o">=</span><span class="n">param_a</span><span class="p">,</span> <span class="n">param_b</span><span class="o">=</span><span class="n">param_b</span><span class="p">)</span>
+
+    <span class="c1"># Report back loss</span>
+    <span class="n">trial</span><span class="o">.</span><span class="n">report_loss</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="view-optimal-values">
+<h2>View optimal values<a class="headerlink" href="#view-optimal-values" title="Permalink to this headline">¶</a></h2>
+<p>The optimal hyperparameter values can be viewed in the online interface, or requested directly using <code class="docutils literal notranslate"><span class="pre">hyperkite.get_best_values(study_key)</span></code> function:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hyperkite</span><span class="o">.</span><span class="n">get_best_values</span><span class="p">(</span><span class="n">STUDY_KEY</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>If everything went well, a dictionary that looks like this will be printed: <code class="docutils literal notranslate"><span class="pre">{'param_a':</span> <span class="pre">1,</span> <span class="pre">'param_b':</span> <span class="pre">1.5092954608845162}</span></code>.</p>
+<p>Sweet! As we can see, we were able to find hyperparameter values very close to our optimal point.</p>
+</div>
+<div class="section" id="what-s-next">
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have learned how to use Hyperkite to optimize hyperparameters you can start applying this knowledge on your own machine learning models. Try to replace the MultiLayerPerceptron in the tutorial with other models from sklearn, or start training more advanced deep learning models using <a class="reference external" href="https://www.tensorflow.org/tutorials/quickstart/beginner">Tensorflow</a> or <a class="reference external" href="https://pytorch.org/tutorials/">PyTorch</a> and try to tweak them using <a class="reference external" href="https://hyperkite.ai/">Hyperkite</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+		</div>
+		<footer class="footer">
+			<div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-muted">
+                &copy; Copyright 2019, Hyperkite.<br/>
+              <span style="font-size: 15px">
+                Generated using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+              </span>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <ul class="nav nav-footer justify-content-cennter justify-content-xl-end">
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Back to top</a>
+              
+            </li>
+          </ul>
+        </div>
+			</div>
+		</footer>
+	</div>
+</div>
+
+<script type="text/javascript" src="_static/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="_static/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="_static/assets/js/argon.js?v=1.0.0"></script>
+<script type="text/javascript" src="_static/assets/js/prism.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<div class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <!--
+    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">
+      {% if theme_navbar_title -%}{{ theme_navbar_title|e }}{%- else -%}{{ project|e }}{%- endif -%}
+    </a>
+    -->
+    <ul class="navbar-nav align-items-center d-none d-md-flex">
+      {% if theme_navbar_links %}
+        {%- for link in theme_navbar_links %}
+        <a class="nav-link pr-0" href="{{ pathto(*link[1:]) }}">{{ link[0] }}</a>
+        {%- endfor %}
+      {% endif %}
+      {% block navbartoc %}
+        {% include "globaltoc.html" %}
+        {% if theme_navbar_pagenav %}
+          {% include "navbartoc.html" %}
+        {% endif %}
+      {% endblock %}
+      {% block navbarextra %}
+      {% endblock %}
+    </ul>
+    {% block navbarsearch %}
+      {% include "navbarsearchbox.html" %}
+    {% endblock %}
+  </div>
+</div>
