@@ -23,7 +23,7 @@ Install the Hyperkite package by running the following command in your terminal:
 
 .. code:: bash
 
-    pip install git+git://github.com/hyperkite/hyperkite.git
+    pip install hyperkite
 
 For more information about installing Hyperkite, check out the more detailed Installation_ instructions.
 
