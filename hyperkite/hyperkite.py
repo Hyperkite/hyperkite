@@ -62,9 +62,9 @@ class Trial():
             try:
                 self.values = response_json['values']
             except KeyError as e:
-                print(f'[Error] Wrong response content: {e}')
+                print('[Error] Wrong response content: {}'.format(e))
         else:
-            print(f'[Error] Wrong response: {response}')
+            print('[Error] Wrong response: {}'.format(response))
 
 
     def get_loss(self) -> Union[float, None]:
@@ -82,9 +82,9 @@ class Trial():
             try:
                 return response_json['loss'][-1]
             except KeyError as e:
-                print(f'[Error] Wrong response content: {e}')
+                print('[Error] Wrong response content: {}'.format(e))
         else:
-            print(f'[Error] Wrong response: {response}')
+            print('[Error] Wrong response: {}'.format(response))
 
     def get_losses(self) -> Union[List[float], None]:
         ''' Request and return list of all losses from trial.
@@ -101,9 +101,9 @@ class Trial():
             try:
                 return response_json['loss']
             except KeyError as e:
-                print(f'[Error] Wrong response content: {e}')
+                print('[Error] Wrong response content: {}'.format(e))
         else:
-            print(f'[Error] Wrong response: {response}')
+            print('[Error] Wrong response: {}'.format(response))
 
 
     def report_loss(self, loss: float):
@@ -115,7 +115,7 @@ class Trial():
         Returns: HTTP Response indicating whether reporting was succesful
         '''
 
-        path = urljoin(API_URL, f'studies/{self.study_key}/trials/{self.trial_key}/loss')
+        path = urljoin(API_URL, 'studies/{}/trials/{}/loss'.format(self.study_key, self.trial_key))
 
         data = {'loss': loss}
 
@@ -154,8 +154,6 @@ class Study():
                 trial_key = response_json['trial_key']
                 values = response_json['values']
 
-                # print(f'New trial values: {values}')
-
                 # Check output
                 if trial_key == '':
                     print('[Error] Received empty trial key...')
@@ -172,10 +170,10 @@ class Study():
 
                 return Trial._from_values(self.study_key, trial_key, values)
             except KeyError as e:
-                print(f'[Error] Incomplete response: {response}')
+                print('[Error] Incomplete response: {}'.format(response))
                 return None
         else:
-            print(f'[Error] Wrong response: {response}')
+            print('[Error] Wrong response: {}'.format(response))
             return None
 
     def get_best_trial(self) -> Union[Trial, None]:
@@ -208,10 +206,10 @@ class Study():
 
                 return Trial._from_values(self.study_key, trial_key, values)
             except KeyError as e:
-                print(f'[Error] Incomplete response: {response}')
+                print('[Error] Incomplete response: {}'.format(response))
                 return None
         else:
-            print(f'[Error] Wrong response: {response}')
+            print('[Error] Wrong response: {}'.format(response))
             return None
 
 
